@@ -1,0 +1,24 @@
+<div class="d-flex flex-column h-100 justify-content-between">
+  <app-header></app-header>
+  <div class="row no-gutters col-md-12 py-5">
+    <div class="col-md-4 pe-0">
+      <app-addProduct 
+      (addProductEmitter)="addProduct($event)"
+      [productUpdateDataObservable]="productUpdateDataObservable"
+      (updateProductEmitter)="updateProductData($event)"
+      >
+    </app-addProduct>
+    </div>
+    <div class="col-md-8 p-0" *ngIf="productList.length">
+      <app-shopping-list 
+      [productList]="productList"
+      [productSize]="productSize"
+      (pageNumberEmitter)="pageNo = $event;getProductList()"
+      (deleteProductEmitter)="deleteProductFromList($event)"
+      (updateProductEmitter)="updateProductDetails($event)"
+      (searchProductEmitter)="searchProduct($event)"
+      ></app-shopping-list>
+    </div>
+  </div>
+  <app-footer></app-footer>
+</div>

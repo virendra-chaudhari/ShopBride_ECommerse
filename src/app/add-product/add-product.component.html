@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card shadow">
+        <div class="card-title text-center border-bottom">
+          <h2 class="p-3">Add Product</h2>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="addProductForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="username" formControlName="title"
+                [ngClass]="{ 'is-invalid': ((t['title']?.touched || t['title']?.dirty)) && t['title']?.errors }" />
+
+              <div *ngIf="((t['title']?.touched || t['title']?.dirty)) && t['title']?.errors" class="text-danger">
+                <div class="amount-field" *ngIf="t['title']?.errors?.['required']">
+                  <small>Title is required</small>
+                </div>
+                <div class="amount-field" *ngIf="t['title']?.errors?.['pattern']">
+                  <small>Invalid title</small>
+                </div>
+              </div>
+
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="description" formControlName="description"
+                [ngClass]="{ 'is-invalid': ((t['description']?.touched || t['description']?.dirty)) && t['description']?.errors }" />
+              <div *ngIf="((t['description']?.touched || t['description']?.dirty)) && t['description']?.errors"
+                class="text-danger">
+                <div class="amount-field" *ngIf="t['description']?.errors?.['required']">
+                  <small>Description is required</small>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="number" class="form-label">Price <span class="text-danger">*</span></label>
+              <input type="number" class="form-control" id="number" formControlName="price"
+              [ngClass]="{ 'is-invalid': ((t['price']?.touched || t['price']?.dirty)) && t['price']?.errors }"/>
+              <div *ngIf="((t['price']?.touched || t['price']?.dirty)) && t['price']?.errors"
+                class="text-danger">
+                <div class="amount-field" *ngIf="t['price']?.errors?.['required']">
+                  <small>Price is required</small>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="number" class="form-label">Category <span class="text-danger">*</span></label>
+              <select name="category" id="" class="form-control" formControlName="category"
+              [ngClass]="{ 'is-invalid': ((t['category']?.touched || t['category']?.dirty)) && t['category']?.errors }"
+              >
+                <option [value]="null">Select Category</option>
+                <option value="laptop">Laptop</option>
+                <option value="desktop">desktop</option>
+              </select>
+              <div *ngIf="((t['category']?.touched || t['category']?.dirty)) && t['category']?.errors"
+              class="text-danger">
+              <div class="amount-field" *ngIf="t['category']?.errors?.['required']">
+                <small>Category is required</small>
+              </div>
+            </div>
+            </div>
+            <div class="d-grid">
+              <button type="submit" [disabled]="addProductForm.invalid" (click)="!isFormUpdated? addProduct(): updateProducts()" class="btn btn-primary main-bg">{{!isFormUpdated ?"Add":"Update"}}</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

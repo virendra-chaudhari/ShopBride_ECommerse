@@ -1,0 +1,13 @@
+.card:hover{
+    box-shadow: 0 0 6px 3px lightgrey;;
+}
+.card{
+    width:30%;
+}
+
+@media screen and (min-width : 320px) and (max-width : 767px){
+    .card{
+        width: 100%;
+        padding: 0 !important;
+    }
+}
